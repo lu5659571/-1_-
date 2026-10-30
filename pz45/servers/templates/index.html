@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>ПЗ 4-5: Паттерны Singleton и Factory</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333; }
+        h1 { color: #2c3e50; }
+        .card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Демонстрация паттернов проектирования</h1>
+
+    <!-- БЛОК 1 -->
+    <div class="card">
+        <h2>1. Система учёта серверов СУБД</h2>
+        <p><b>Singleton (DatabaseConnectionManager):</b>
+            {% if is_singleton_db %}
+                <span class="success">Работает (создан 1 экземпляр)</span>
+            {% else %}
+                <span class="error">Ошибка</span>
+            {% endif %}
+        </p>
+        <p><b>Factory (ServerFactory):</b></p>
+        <ul>
+            <li>{{ pg_info }}</li>
+            <li>{{ mysql_info }}</li>
+        </ul>
+    </div>
+
+    <!-- БЛОК 2 -->
+    <div class="card">
+        <h2>2. Система аудита действий в БД</h2>
+        <p><b>Singleton (AuditLogger):</b>
+            {% if is_singleton_audit %}
+                <span class="success">Работает (создан 1 экземпляр)</span>
+            {% else %}
+                <span class="error">Ошибка</span>
+            {% endif %}
+        </p>
+        <p><b>Логи аудита:</b> {{ audit_logs }}</p>
+        <p><b>Factory (AuditEventFactory):</b> {{ select_event }}</p>
+    </div>
+
+    <!-- БЛОК 3 -->
+    <div class="card">
+        <h2>3. Мониторинг медленных запросов</h2>
+        <p><b>Singleton (SlowQueryMonitor):</b>
+            {% if is_singleton_slow %}
+                <span class="success">Работает (создан 1 экземпляр)</span>
+            {% else %}
+                <span class="error">Ошибка</span>
+            {% endif %}
+        </p>
+        <p><b>Медленные запросы:</b> {{ slow_queries }}</p>
+        <p><b>Factory (QueryReportFactory):</b> {{ daily_report }}</p>
+    </div>
+</body>
+</html>
