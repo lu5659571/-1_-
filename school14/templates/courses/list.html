@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Курсы</title>
+</head>
+<body>
+    <h1>Список курсов</h1>
+
+    {% for course in courses %}
+        <p>
+            <a href="{% url 'course_detail' course.pk %}">
+                {{ course.name }}
+            </a>
+            — {{ course.get_level_display }}
+            — {{ course.price }} руб.
+        </p>
+    {% empty %}
+        <p>Курсов пока нет.</p>
+    {% endfor %}
+
+    <a href="/">На главную</a>
+</body>
+</html>

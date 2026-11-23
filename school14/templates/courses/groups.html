@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Группы</title>
+</head>
+<body>
+    <h1>Учебные группы</h1>
+
+    <form method="get">
+        <select name="level">
+            <option value="">Все уровни</option>
+            <option value="beginner">Начальный</option>
+            <option value="intermediate">Средний</option>
+            <option value="advanced">Продвинутый</option>
+        </select>
+        <button type="submit">Найти</button>
+    </form>
+
+    {% for group in groups %}
+        <p>
+            {{ group.course.name }} —
+            {{ group.teacher.full_name }} —
+            {{ group.schedule }}
+        </p>
+    {% empty %}
+        <p>Группы не найдены.</p>
+    {% endfor %}
+
+    <a href="/">На главную</a>
+</body>
+</html>
