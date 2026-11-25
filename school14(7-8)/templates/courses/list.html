@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load cache %}
+
+{% block title %}Курсы{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+{% cache 120 courses_header %}
+    <h1>Список курсов</h1>
+{% endcache %}
+
+    <a href="{% url 'courses:course_create' %}"
+       class="btn btn-primary">
+        Добавить курс
+    </a>
+</div>
+
+<form method="get" class="row g-3 mb-4">
+
+    <div class="col-md-6">
+        <input type="text"
+               name="q"
+               value="{{ q }}"
+               class="form-control"
+               placeholder="Поиск курса">
+    </div>
+
+    <div class="col-md-4">
+        <select name="level" class="form-select">
+
+            <option value="">Все уровни</option>
+
+            {% for value, label in levels %}
+                <option value="{{ value }}"
+                    {% if level == value %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-primary w-100">
+            Найти
+        </button>
+    </div>
+
+</form>
+
+<div class="row g-4">
+
+    {% for course in courses %}
+
+    <div class="col-md-6 col-lg-4">
+
+        <div class="card course-card p-4 h-100">
+
+            <i class="bi bi-book fs-1 text-primary"></i>
+
+            <h3>{{ course.name }}</h3>
+
+            <p>{{ course.get_level_display }}</p>
+
+            <p>{{ course.duration }} часов</p>
+
+            <h4>{{ course.price }} ₽</h4>
+
+            <a href="{% url 'courses:course_detail' course.pk %}"
+               class="btn btn-outline-primary mt-auto">
+                Подробнее
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+        <div class="alert alert-info">
+            Курсы не найдены.
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

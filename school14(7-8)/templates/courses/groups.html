@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Учебные группы{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Учебные группы</h1>
+
+<form method="get" class="row g-3 mb-4">
+
+    <div class="col-md-6">
+
+        <select name="level" class="form-select">
+
+            <option value="">Все уровни</option>
+
+            {% for value, label in levels %}
+                <option value="{{ value }}"
+                    {% if level == value %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary">Найти</button>
+    </div>
+
+</form>
+
+<div class="table-responsive">
+
+    <table class="table table-striped table-hover">
+
+        <thead>
+            <tr>
+                <th>Курс</th>
+                <th>Преподаватель</th>
+                <th>Начало обучения</th>
+                <th>Расписание</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for group in groups %}
+
+            <tr>
+                <td>{{ group.course.name }}</td>
+                <td>{{ group.teacher.full_name }}</td>
+                <td>{{ group.start_date }}</td>
+                <td>{{ group.schedule }}</td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="4">Группы не найдены.</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

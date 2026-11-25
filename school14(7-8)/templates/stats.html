@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Статистика школы</h1>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Количество курсов</p>
+            <h2>{{ course_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Преподаватели</p>
+            <h2>{{ teacher_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Ученики</p>
+            <h2>{{ student_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Учебные группы</p>
+            <h2>{{ group_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Записи на обучение</p>
+            <h2>{{ enrollment_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4">
+            <p>Средняя стоимость курса</p>
+            <h2>{{ average_price|floatformat:2 }} ₽</h2>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

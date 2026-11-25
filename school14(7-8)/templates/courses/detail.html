@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.name }}{% endblock %}
+
+{% block content %}
+
+<div class="card p-4 mb-4">
+
+    <h1>{{ course.name }}</h1>
+
+    <p>Уровень: {{ course.get_level_display }}</p>
+
+    <p>Длительность: {{ course.duration }} часов</p>
+
+    <h3>{{ course.price }} ₽</h3>
+
+</div>
+
+<h2 class="mb-3">Учебные группы курса</h2>
+
+<div class="table-responsive">
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Преподаватель</th>
+                <th>Дата начала</th>
+                <th>Расписание</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for group in groups %}
+
+            <tr>
+                <td>{{ group.teacher.full_name }}</td>
+                <td>{{ group.start_date }}</td>
+                <td>{{ group.schedule }}</td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="3">Групп пока нет.</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<a href="{% url 'courses:course_list' %}"
+   class="btn btn-secondary">
+    Назад
+</a>
+
+{% endblock %}

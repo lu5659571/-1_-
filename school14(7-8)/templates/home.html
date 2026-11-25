@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block title %}Главная — School14{% endblock %}
+
+{% block content %}
+
+<div class="hero mb-5">
+
+    <h1 class="display-5 fw-bold">
+        Образование без границ
+    </h1>
+
+    <p class="lead">
+        Выберите подходящий курс и начните обучение
+        вместе с School14.
+    </p>
+
+    <a href="{% url 'courses:course_list' %}"
+       class="btn btn-light btn-lg">
+        Смотреть курсы
+    </a>
+
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card p-4 h-100">
+            <i class="bi bi-book fs-1 text-primary"></i>
+            <h3>Наши курсы</h3>
+            <p>Образовательные программы разных уровней.</p>
+            <a href="{% url 'courses:course_list' %}">
+                Перейти к курсам
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 h-100">
+            <i class="bi bi-people fs-1 text-primary"></i>
+            <h3>Учебные группы</h3>
+            <p>Расписание и преподаватели.</p>
+            <a href="{% url 'courses:group_list' %}">
+                Посмотреть группы
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 h-100">
+            <i class="bi bi-person-plus fs-1 text-primary"></i>
+            <h3>Регистрация</h3>
+            <p>Станьте учеником нашего центра.</p>
+            <a href="{% url 'students:student_create' %}">
+                Зарегистрироваться
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
